@@ -4,5 +4,5 @@ import lombok.Value;
 
 @Value
 public class PdfResponse {
-    private final String greetings;
+    private final String message;
 }

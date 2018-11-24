@@ -3,6 +3,7 @@ package pl.raknroll.raknrollpdf.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.Valid;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -32,7 +33,7 @@ public class PdfGeneratorContoller {
     @GET
     @Produces("application/pdf")
     @Path("/thankyou")
-    public Response uploadFile(@BeanParam final PdfInput pdfInput) throws IOException {
+    public Response uploadFile(@Valid @BeanParam final PdfInput pdfInput) throws IOException {
         return Response.status(OK).entity(pdfGenerator.generate(pdfInput)).build();
     }
 

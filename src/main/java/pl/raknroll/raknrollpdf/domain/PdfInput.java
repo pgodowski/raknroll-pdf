@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
 import javax.ws.rs.QueryParam;
 
 @NoArgsConstructor
@@ -13,6 +14,7 @@ import javax.ws.rs.QueryParam;
 @Setter
 class PdfInput {
     @QueryParam("firstName")
+    @NotEmpty
     private String firstName;
     @QueryParam("registrationDate")
     private String registrationDate;

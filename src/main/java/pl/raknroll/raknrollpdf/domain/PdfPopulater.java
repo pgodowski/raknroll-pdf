@@ -6,6 +6,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
 import org.apache.pdfbox.pdmodel.PDResources;
 import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.font.encoding.Encoding;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
@@ -46,7 +47,7 @@ class PdfPopulater {
             resources = new PDResources();
 
         try(InputStream fontStream = PdfPopulater.class.getResourceAsStream("/Dosis-Bold.ttf")){
-            PDTrueTypeFont font = PDTrueTypeFont.load(pdfDocument, fontStream, Encoding.getInstance(COSName.STANDARD_ENCODING));
+            PDType0Font font = PDType0Font.load(pdfDocument, fontStream, false);
             resources.add(font);
             resources.put(COSName.getPDFName("Helvetica"), font);
             acroForm.setDefaultResources(resources);
