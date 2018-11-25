@@ -1,5 +1,6 @@
 package pl.raknroll.raknrollpdf.domain;
 
+import org.apache.pdfbox.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import static javax.ws.rs.core.Response.Status.OK;
 
@@ -28,6 +30,15 @@ public class PdfGeneratorContoller {
     @Path("/healthcheck")
     public Response healthCheck() {
         return Response.status(OK).entity(new PdfResponse("I'm running")).build();
+    }
+
+    @GET
+    @Produces("application/txt")
+    @Path("/wakemydyno.txt")
+    public Response wakeupdyno() throws IOException {
+        try(InputStream is = PdfGeneratorContoller.class.getResourceAsStream("/wakemydyno.txt")){
+            return Response.status(OK).entity(IOUtils.toByteArray(is)).build();
+        }
     }
 
     @GET
